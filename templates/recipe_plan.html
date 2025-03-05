@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Plan</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Recipe Plan</h1>
+
+        {% if recipes %}
+            <p>Here are your recipes based on your preferences:</p>
+            <ul>
+                {% for recipe in recipes %}
+                    <li><strong>{{ recipe.name }}</strong>: {{ recipe.ingredients }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No recipes found. Please add some recipes first.</p>
+        {% endif %}
+
+        <form action="/recipe_input" method="GET">
+            <button type="submit">Add More Recipes</button>
+        </form>
+
+        <form action="/" method="GET">
+            <button type="submit" class="secondary-button">Back to Home</button>
+        </form>
+    </div>
+</body>
+</html>
